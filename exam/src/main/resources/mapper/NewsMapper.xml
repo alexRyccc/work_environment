@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!-- namespace:命名空间，该值与接口全路径保持一致 -->
+<mapper namespace="com.newer.exam.xrd.NewsMapper">
+    <!-- 开启二级缓存，默认情况下没有有开启的 -->
+	<cache />
+	<!-- 定义Pojo类属性与数据表字段对应关系 -->
+	<resultMap type="com.newer.exam.xrd.News" id="newsMap">
+		<id property="nid" column="NID" />
+		<result property="nname" column="NNAME" />
+		<result property="testtype" column="TESTTYPE" />
+		<result property="location" column="LOCATION" />
+		<result property="ndate" column="NDATE" />
+		<result property="url" column="URL" />
+		<result property="ntype" column="NTYPE" />
+		<!-- 配置关联关系：多对一 -->
+	</resultMap>
+
+
+	<select id="select"   resultMap="newsMap">
+		SELECT
+		NID,NNAME,TESTTYPE,LOCATION,NDATE,URL,NTYPE FROM news where 1=1
+		
+		<if test="testtype!=null">
+		 AND TESTTYPE=#{testtype} 
+		</if>
+		<if test="location!=null">
+		 AND LOCATION=#{location} 
+		</if>
+		<if test="ntype!=null">
+		 AND NTYPE=#{ntype} 
+		</if>
+		order by ndate desc
+	</select>
+	
+
+</mapper>

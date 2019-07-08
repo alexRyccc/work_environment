@@ -1,0 +1,315 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>在线考试</title>
+<link href="../css/main.css" rel="stylesheet" type="text/css" />
+<link href="../css/iconfont.css" rel="stylesheet" type="text/css" />
+<link href="../css/test1.css" rel="stylesheet" type="text/css" /> 
+ <link rel="stylesheet" href="../layui/css/layui.css"  media="all">
+  <script src="../js/include.js"></script>
+<style>
+.hasBeenAnswer {
+	background: #5d9cec;
+	color:#fff;
+}
+
+button.accordion.active, button.accordion:hover {
+    background-color: #ddd;
+}
+
+div.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+</style>
+</head>
+<div>
+ <include src="head.html" ></include>
+ </div>
+ <br>
+<br>
+<br>
+<br>
+<body>
+	<div class="main">
+		<!--nr start-->
+		<div class="test_main">
+			<div class="nr_left">
+				<div class="test">
+					<form action="" method="post">
+						<div class="test_title">
+							<p class="test_time">
+								<!-- <font><input type="button" name="uptest" value="上一题"></font> -->
+								
+							</p>
+							<font><input type="button" name="nexttest"  id="nexttest" value="下一题" disabled="disabled"></font>
+						<!-- 	<font><input type="button" name="submit" value="交卷"></font> -->
+						</div>
+						
+							<div class="test_content">
+								<div class="test_content_title">
+									<h2>多选题</h2>
+									<p>
+										<span>共</span><i class="content_lit">10</i><span>题，</span><span>合计</span><i class="content_fs">30</i><span>分</span>
+									</p>
+								</div>
+							</div>
+							<div class="test_content_nr" id="tx">
+								
+							</div>
+										
+									
+							</form>
+							</div>
+						
+				
+				</div>
+
+			</div>
+			<div class="nr_right">
+				<div class="nr_rt_main">
+					<div class="rt_nr1" style="top:150px">
+						<div class="rt_nr1_title">
+							<h1>
+								<i class="icon iconfont">&#xe692;</i>提示
+							</h1>
+							<p class="test_time">
+								<i class="icon iconfont">&#xe6fb;</i><b class="alt-1">00:00</b>
+							</p>
+						</div>
+						
+							<div class="rt_content">
+								<div class="rt_content_tt">
+									<h2>多选题</h2>
+									<p>
+										<span>共</span><i class="content_lit" id="fenshu">0</i><span>分</span>
+									</p>
+								</div>
+								<div class="rt_content_nr answerSheet"> 
+									
+				<button type="button" id="tishi" class="accordion layui-btn layui-btn-fluid">展开提示</button>
+		<div class="panel">
+  							<p>俺寻思答案是<span id="daan"></span></p>
+		 	</div>
+
+
+								</div>
+							</div>
+						
+							
+						
+					</div>
+
+				</div>
+			</div>
+
+		
+		<!--nr end-->
+		<div class="foot"></div>
+	</div>
+
+
+	<script src="../js/jquery-3.3.1.min.js"></script>
+	<script src="../js/jquery.easy-pie-chart.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<!--时间js-->
+	<script src="../js/jquery.countdown.js"></script>
+	<script>
+	var acc = document.getElementsByClassName("accordion");
+	var i;
+
+	for (i = 0; i < acc.length; i++) {
+	  acc[i].onclick = function() {
+	    this.classList.toggle("active");
+	    var panel = this.nextElementSibling;
+	    if (panel.style.maxHeight){
+	      panel.style.maxHeight = null;
+	    } else {
+	      panel.style.maxHeight = panel.scrollHeight + "px";
+	    } 
+	  }
+	}
+	
+		
+		$(function() {
+			
+			var p =location.search;
+			var arr =p.split("=");
+			var type =arr[1];
+			
+			var daan ="";
+			var intdex =0;
+			var fen =0;
+			select(type);
+			$("#tishi").on('click',function(e){
+			
+				
+				$("#daan").html(daan);
+		});
+	
+			$("#nexttest").on('click',function(e){
+				
+				 obj = document.getElementsByName("answer1");
+				    check_val = [];
+				    for(k in obj){
+				        if(obj[k].checked)
+				            check_val.push(obj[k].value);
+				    }
+				 
+				var pages =$("#ids").val();
+			 	
+				 
+		 		$.ajax({
+					method:'post',
+					url:'../exam/check2/'+check_val+"/"+pages+"/"+type,
+					
+					success:function(data){
+						if(data=="回答正确"){
+							fen =fen +1;
+							$("#fenshu").html(fen);
+						}
+						select(type);
+					},
+					dataType:'text',
+					contentType:'application/json'//以json方式提交
+				});  
+				
+				
+			})
+			/* 
+				$(':radio').click(function(){
+			
+			  $("#nexttest").attr("disabled", false).css("background-color","#f60"); 
+				}); */
+			
+				 
+				test =function  (){
+				
+					if(intdex ==10){
+						$("#nexttest").val('交卷');
+						
+					}
+		            $("#nexttest").attr("disabled", false).css("background-color","#f60"); 
+				}
+			
+			
+			
+			
+			
+			
+			function select(page){
+				
+				intdex=intdex+1;
+
+				if(intdex ==11){
+					window.location.href='test3.html?type='+type;
+				}
+				
+			
+				
+				$.ajax({
+					url:'../exam/19datest2/'+type,
+					method:'get',  
+					success:function(data){
+						//
+						//
+						var ul='';
+						//遍历data,并在表格中显示
+						
+						$.each(data,function(index,val){
+						
+						
+							ul+=`
+							<ul>
+								<li id="ids" value ="${val.chid}">
+								<div class="test_content_nr_tt">
+									<i id ="idint"></i><span>(3分)</span><font>${val.chname}</font><b class="icon iconfont">&#xe881;</b>
+								</div>
+
+								<div class="test_content_nr_main">
+									<ul>
+										
+											<li class="option">
+												
+													<input type="checkbox" class="radioOrCheck" onclick="test()"  name="answer1"
+														id="answer1" value ="A" />
+												
+												
+												<label for="0_answer_1_option_1">
+													
+													<p class="ue" style="display: inline;">${val.cha}</p>
+												</label>
+											</li>
+										
+											<li class="option">
+												
+													<input type="checkbox" class="radioOrCheck" name="answer1" onclick="test()"
+														id="answer2"  value ="B"
+													/>
+												
+												
+												<label for="0_answer_1_option_2">
+													
+													<p class="ue" style="display: inline;">${val.chb}</p>
+												</label>
+											</li>
+										
+											<li class="option">
+												
+													<input type="checkbox" class="radioOrCheck" name="answer1" onclick="test()"
+														id="answer3" value ="C"
+													/>
+												
+												
+												<label for="0_answer_1_option_3">
+													
+													<p class="ue" style="display: inline;">${val.chc}</p>
+												</label>
+											</li>
+										
+											<li class="option">
+												 
+													<input type="checkbox" class="radioOrCheck" name="answer1" onclick="test()"
+														id="answer4" value ="D"
+													/>
+												
+												
+												<label for="0_answer_1_option_4">
+													
+													<p class="ue" style="display: inline;">${val.chd}</p>
+												</label>
+											</li>
+										
+									</ul>
+								</div>
+							</li>
+							</ul>
+							`;
+							daan = val.chwanswer;
+						});
+						$('#tx').html(ul);
+						$("#idint").html(intdex);
+						$("#nexttest").attr("disabled", true).css("background-color","#0000FF"); 
+					
+					},
+					dataType:'json'
+				});
+				
+				
+			}
+			
+		});
+	</script>
+
+
+</body>
+
+</html>

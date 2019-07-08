@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="layui/css/layui.css"  media="all">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<script src="js/include.js"></script>
+<title>学习强国在线考试系统</title>
+<style>
+     
+</style>
+</head>
+<body style="background-color:#F3F3F3;position:relative;">
+ <include src="head2.html"></include>
+  
+<div class="layui-carousel" id="test10">
+   
+    <div carousel-item="">
+        <div style="background:url(jpg/1.jpg) no-repeat;"></div>
+        <div style="background:url(jpg/2.png) no-repeat;"></div>
+        <div style="background:url(jpg/3.png) no-repeat;"></div>
+        <div style="background:url(jpg/4.png) no-repeat;"></div>
+     </div>
+</div>
+   
+     <div style="width:1240px;height:600px;margin:auto;background:url(jpg/11.png) no-repeat;">
+         
+     </div>
+     <br>
+     <div style="width:1240px;height:590px;margin:auto;background:url(jpg/12.png) no-repeat;">
+         
+     </div>
+     <div style="width:1240px;height:510px;margin:auto;background:url(jpg/14.png) no-repeat;">
+         
+     </div>
+     <div style="width:1240px;height:570px;margin:auto;background:url(jpg/13.png) no-repeat;">
+         
+     </div>
+    <script src="layui/layui.js" charset="utf-8"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script>
+layui.use(['carousel', 'form'], function(){
+  var carousel = layui.carousel
+  ,form = layui.form;
+  
+  
+  //图片轮播
+  carousel.render({
+    elem: '#test10'
+    ,width: '100%'
+    ,height: '500px'
+    ,interval: 5000
+  });
+  
+  
+  var $ = layui.$, active = {
+    set: function(othis){
+      var THIS = 'layui-bg-normal'
+      ,key = othis.data('key')
+      ,options = {};
+      
+      othis.css('background-color', '#5FB878').siblings().removeAttr('style'); 
+      options[key] = othis.data('value');
+      ins3.reload(options);
+    }
+  };
+  
+  //监听开关
+  form.on('switch(autoplay)', function(){
+    ins3.reload({
+      autoplay: this.checked
+    });
+  });
+  
+  $('.demoSet').on('keyup', function(){
+    var value = this.value
+    ,options = {};
+    if(!/^\d+$/.test(value)) return;
+    
+    options[this.name] = value;
+    ins3.reload(options);
+  });
+  
+  //其它示例
+  $('.demoTest .layui-btn').on('click', function(){
+    var othis = $(this), type = othis.data('type');
+    active[type] ? active[type].call(this, othis) : '';
+  });
+});
+</script>
+<script type="text/javascript">
+ $(window).bind('scroll',function(){
+    //算出鼠标移动到顶部的高度。
+   var scrollt = document.documentElement.scrollTop + document.body.scrollTop;
+   if(scrollt <= 60){
+       $("#head").css("cssText","width:100%;height:80px;text-align:center;font-size:18px;position:absolute;z-index:999;color:white");
+       $("#label1").css("cssText","border-bottom-left-radius: 12px;border-bottom-right-radius: 12px;border-bottom:2px solid white;width:60px;height:60px;display:inline-block;background-color:#F3F3F3;color:red");
+       $("#a1").css("cssText","color:white;font-size:18px;");
+       $("#a2").css("cssText","color:white;font-size:18px;");
+       $("#a3").css("cssText","color:white;font-size:18px;");
+       $("#a4").css("cssText","color:white;font-size:18px;");
+       
+   }else{
+       $("#head").css("cssText","background-color:white;color:black;width:100%;height:80px;text-align:center;font-size:18px;position:fixed;z-index:999");
+       $("#label1").css("cssText","color:red;border-bottom:1px solid red;width:60px;height:60px;display:inline-block");
+       $("#a1").css("cssText","color:black;font-size:18px;");
+       $("#a2").css("cssText","color:black;font-size:18px;");
+       $("#a3").css("cssText","color:black;font-size:18px;");
+       $("#a4").css("cssText","color:black;font-size:18px;");
+       
+   }
+  })
+  
+
+</script>
+</body>
+</html>

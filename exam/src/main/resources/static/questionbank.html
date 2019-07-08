@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="layui/css/layui.css"  media="all">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<script src="js/include.js"></script>
+<title>题库</title>
+<style>
+     #part1,#part2,#part3,#part4,#part5,#part6,#institution1,#institution2,#institution3,#institution4,#servant1,#servant2,#servant3,#servant4{
+        margin-top:40px;
+        width: 440px;
+        height: 300px;
+        float: left;
+        background-color:white;
+        border:2px solid #FFFFFF;
+        display:inline;
+    }
+    #institution5,#institution6,#servant5,#servant6,#teacher5,#teacher6,#firemen5,#firemen6,#drive4,#drive5{
+        margin-top:40px;
+        width: 440px;
+        height: 300px;
+        float: left;
+        background-color:white;
+        border:2px solid #FFFFFF;
+        display:inline;
+    }
+    #teacher1,#teacher2,#teacher3,#teacher4,#firemen1,#firemen2,#firemen3,#firemen4,#drive1,#drive2,#drive3{
+        margin-top:40px;
+        width: 440px;
+        height: 300px;
+        float: left;
+        background-color:white;
+        border:2px solid #FFFFFF;
+        
+        display:inline;
+    }
+    #part1,#part3,#part5,#institution1,#institution3,#institution5,#servant1,#servant3,#servant5,#teacher3,#teacher1,#teacher5,#firemen1,#firemen3,#firemen5,#drive1,#drive3,#drive5{
+        margin-left:30px;
+    }
+    #part2,#part4,#part6,#institution2,#institution4,#institution6,#servant2,#servant4,#servant6,#drive2,#drive4,#firemen2,#firemen4,#firemen6,#teacher2,#teacher4,#teacher6{
+        margin-left:60px;
+    }
+    
+     #label2,#label3{
+         font-weight: 600;
+                font-size: 28px;
+                font-family: "黑体";
+                color: #8c888b;
+                background: -webkit-linear-gradient(45deg, #70f7fe, #fbd7c6, #fdefac, #bfb5dd, #bed5f5);
+                -moz-linear-gradient(45deg, #70f7fe, #fbd7c6, #fdefac, #bfb5dd, #bed5f5);
+                -ms-linear-gradient(45deg, #70f7fe, #fbd7c6, #fdefac, #bfb5dd, #bed5f5);
+                color: transparent;
+                /*设置字体颜色透明*/
+                -webkit-background-clip: text;
+                /*背景裁剪为文本形式*/
+                animation: ran 10s linear infinite;
+                /*动态10s展示*/
+            }
+
+            @keyframes ran {
+                from {
+                    backgroud-position: 0 0;
+                }
+                to {
+                    background-position: 2000px 0;
+                }
+            }
+    
+</style>
+</head>
+<body style="position:relative;background-color:#F3F3F3;">
+ <include src="head.html"></include>
+   <!--  <div style="background-color:white;color:black;width:100%;border-bottom:2px solid #F3F3F3;height:80px;text-align:center;font-size:18px;position:absolute;z-index:999;" id="head">
+      <p style="line-height:80px;">
+        <label>学习强国</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a style="color:black;font-size:18px;" id="label1" href="main.html">首页</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a id="a1" href="questionbank.html" style="border-bottom:1px solid red;width:60px;height:60px;display:inline-block;color:red;">题库</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a id="a2" href="information.html" style="color:black;font-size:18px;">资讯</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="text" name="search" id="search" placeholder="请输入关键字" class="form-control" style="width:200px;display:inline;">&nbsp;&nbsp;
+        <button type="button" id="btn" name="btn" class="btn btn-primary" >搜索</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="register.html" id="a3" style="color:black;font-size:18px;">注册</a>&nbsp;&nbsp;|
+        <a href="login.html" id="a4" style="color:black;font-size:18px;">登录</a>
+      </p>
+    </div> -->
+    <div style="height:150px;width:100%;border: 1px solid #D8D8D8;background-color:white;">
+    <div style="height:70px;width:1000px;margin:auto;margin-top:80px;text-align:center;">
+        <p style="line-height: 70px;font-size:18px;">
+            <label onclick="jump1()" id="l1" style="color:red;font-size:19px;">十九大专题</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="jump2()" id="l2">事业单位</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="jump3()" id="l3">公务员笔试</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="jump4()" id="l4">教师考试</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="jump5()" id="l5">消防员考试</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="jump6()" id="l6">驾考科目一</label>
+        </p>
+    </div>
+    </div>
+    
+    <div id="v1" style="width:300px;height:350px;margin-top:180px ;float:left;position:absolute;z-index:999;">
+        <div id="v2" style="width:280px;height:350px;float:left;background-color:white;text-align:center;">
+            <br>
+            <h2 style="color:red;">最新消息</h2>
+            <br>
+            <br>
+            <label id="label2">2019年河南公务员考试开封市面试资格确认公告</label>
+        </div>
+        <div id="v3" style="width:20px;height:350px;float:left;background-color:white;border-left:2px solid #F3F3F3;">
+            <strong  style="line-height:350px;">&#60;</strong>
+        </div>
+    </div>
+    
+    
+    
+    <div style="width:1000px;margin:auto;" id="19da">
+        <div id="part1" style="">
+             <div style="height:20px;width:100px;margin-left:25px;background-color:red;color:white;border-radius:4px;text-align:center;font-size:10px">
+                 <label id="p2" style="line-height:20px;">综合试卷</label>
+             </div>
+             <div style="margin-left:25px;margin-top:25px;margin-right:25px;font-family">
+                 <strong>不忘初心，牢记使命，高举中国特色社会主义伟大旗帜，决胜全面建成小康社会，夺取新时代中国特色社会主义伟大胜利，为实现中华民族伟大复兴的中国梦不懈奋斗。</strong>
+             </div>
+             <br>
+             <br>
+             <hr>
+             <div style="float:right;margin-right:25px;width:80px;" >
+                 &nbsp;&nbsp;&nbsp;<strong style="color:red;font-size:22px;">免费</strong>
+                 <br>
+                 <label style="font-size:10px;">1111人已完成</label>
+             </div>
+        </div> 
+        <div id="part2" style="">
+             <div style="height:20px;width:100px;margin-left:25px;background-color:red;color:white;border-radius:4px;text-align:center;font-size:10px">
+                 <label id="p2" style="line-height:20px;">单选题</label>
+             </div>
+             <div style="margin-left:25px;margin-top:25px;margin-right:25px;font-family">
+                 <strong>学习贯彻党的十九大精神，就要牢牢把握习近平新时代中国特色社会主义思想这一主线和灵魂。</strong>
+             </div>
+             <br><br>
+             <br>
+             <br>
+             <hr>
+             <div style="float:right;margin-right:25px;width:80px;" >
+                 &nbsp;&nbsp;&nbsp;<strong style="color:red;font-size:22px;">免费</strong>
+                 <br>
+                 <label style="font-size:10px;">811人已完成</label>
+             </div>
+        </div>
+        <div id="part3" style="">
+             <div style="height:20px;width:100px;margin-left:25px;background-color:red;color:white;border-radius:4px;text-align:center;font-size:10px">
+                 <label id="p2" style="line-height:20px;">多选题</label>
+             </div>
+             <div style="margin-left:25px;margin-top:25px;margin-right:25px;font-family">
+                 <strong>党的十九大在承前启后、继往开来的关键节点上，对我国发展所处历史方位作出新的重大政治论断，为制定党和国家大政方针提供了理论依据，进一步指明了党和国家事业的前进方向，具有重大现实意义和深远历史意义。</strong>
+             </div>
+            
+             <br>
+             <hr>
+             <div style="float:right;margin-right:25px;width:80px;" >
+                 &nbsp;&nbsp;&nbsp;<strong style="color:red;font-size:22px;">免费</strong>
+                 <br>
+                 <label style="font-size:10px;">761人已完成</label>
+             </div>
+        </div> 
+        <div id="part4" style="">
+            <div style="height:20px;width:100px;margin-left:25px;background-color:red;color:white;border-radius:4px;text-align:center;font-size:10px">
+                 <label id="p2" style="line-height:20px;">填空题</label>
+             </div>
+             <div style="margin-left:25px;margin-top:25px;margin-right:25px;font-family">
+                 <strong>正确认识和把握我国在不同发展阶段的社会主要矛盾，是科学判明发展形势、正确制定大政方针的重要前提，事关党和国家事业发展全局。</strong>
+             </div>
+             <br>
+             <br>
+             <br>
+             <hr>
+             <div style="float:right;margin-right:25px;width:80px;" >
+                 &nbsp;&nbsp;&nbsp;<strong style="color:red;font-size:22px;">免费</strong>
+                 <br>
+                 <label style="font-size:10px;">871人已完成</label>
+             </div>
+        </div>
+        <div id="part5" style="">
+            <div style="height:20px;width:100px;margin-left:25px;background-color:red;color:white;border-radius:4px;text-align:center;font-size:10px">
+                 <label id="p2" style="line-height:20px;">手机端试卷</label>
+             </div>
+             <div style="margin-left:25px;margin-top:25px;margin-right:25px;font-family">
+                 <strong>正确认识和把握我国在不同发展阶段的社会主要矛盾，是科学判明发展形势、正确制定大政方针的重要前提，事关党和国家事业发展全局。</strong>
+             </div>
+             <br>
+             <br>
+             <br>
+             <hr>
+             <div style="float:right;margin-right:25px;width:80px;" >
+                 &nbsp;&nbsp;&nbsp;<strong style="color:red;font-size:22px;">免费</strong>
+                 <br>
+                 <label style="font-size:10px;">1234人已完成</label>
+             </div>
+        </div>
+        <div id="part6" style="">
+            <div style="height:20px;width:100px;margin-left:25px;background-color:red;color:white;border-radius:4px;text-align:center;font-size:10px">
+                 <label id="p2" style="line-height:20px;">其他</label>
+             </div>
+             <div style="margin-left:25px;margin-top:25px;margin-right:25px;font-family">
+                 <strong></strong>
+             </div>
+             <br>
+             <br>
+             <br>
+             <hr>
+             <div style="float:right;margin-right:25px;width:80px;" >
+                 &nbsp;&nbsp;&nbsp;<strong style="color:red;font-size:22px;">免费</strong>
+                 <br>
+                 <label style="font-size:10px;">2234人已完成</label>
+             </div>
+        </div>
+    </div>
+    
+    <div style="width:1000px;margin:auto;display:none;" id="institution">
+        <div id="institution1" style="">
+             <div style="height:20px;width:100px;margin-left:25px;background-color:red;color:white;border-radius:4px;text-align:center;font-size:10px">
+                 <label id="p2" style="line-height:20px;">综合试卷</label>
+             </div>
+             <div style="margin-left:25px;margin-top:25px;margin-right:25px;font-family">
+                 <strong>公共基础知识的考试内容一般包括政治、经济、法律、时事、科技人文、行政管理、公文等。</strong>
+             </div>
+             <br><br>
+             <br>
+             <hr>
+             <div style="float:right;margin-right:25px;width:80px;" >
+                 &nbsp;&nbsp;&nbsp;<strong style="color:red;font-size:22px;">免费</strong>
+                 <br>
+                 <label style="font-size:10px;">1211人已完成</label>
+             </div>
+        </div> 
+        <div id="institution2" style="">
+             <div style="height:20px;width:100px;margin-left:25px;background-color:red;color:white;border-radius:4px;text-align:center;font-size:10px">
+                 <label id="p2" style="line-height:20px;">单选题</label>
+             </div>
+             <div style="margin-left:25px;margin-top:25px;margin-right:25px;font-family">
+                 <strong>单选题是在整张试卷中占了很大的分数，也是整个试卷最容易、最能的分的项，单选题的好坏，也决定了此次考试的成败。</strong>
+             </div>
+             <br>
+             <br>
+             <hr>
+             <div style="float:right;margin-right:25px;width:80px;" >
+                 &nbsp;&nbsp;&nbsp;<strong style="color:red;font-size:22px;">免费</strong>
+                 <br>
+                 <label style="font-size:10px;">1331人已完成</label>
+             </div>
+        </div>
+        <div id="institution3" style="">
+             <div style="height:20px;width:100px;margin-left:25px;background-color:red;color:white;border-radius:4px;text-align:center;font-size:10px">
+                 <label id="p2" style="line-height:20px;">多选题</label>
+             </div>
+             <div style="margin-left:25px;margin-top:25px;margin-right:25px;font-family">
+                 <strong>事业单位是指由国家行政机关举办，受国家行政机关领导，没有生产收入、所需经费由公共财政支出、不实行经济核算、主要提供教育、科技、文化、卫生等活动非物质生产和劳务服务的社会公共组织，事业单位接受政府领导，是表现形式为组织或机构的法人实体。</strong>
+             </div>
+            
+             <br>
+             <hr>
+             <div style="float:right;margin-right:25px;width:80px;" >
+                 &nbsp;&nbsp;&nbsp;<strong style="color:red;font-size:22px;">免费</strong>
+                 <br>
+                 <label style="font-size:10px;">881人已完成</label>
+             </div>
+        </div> 
+        <div id="institution4" style="">
+             <div style="height:20px;width:100px;margin-left:25px;background-color:red;color:white;border-radius:4px;text-align:center;font-size:10px">
+                 <label id="p2" style="line-height:20px;">填空题</label>
+             </div>
+             <div style="margin-left:25px;margin-top:25px;margin-right:25px;font-family">
+                 <strong>党的十九大在承前启后、继往开来的关键节点上，对我国发展所处历史方位作出新的重大政治论断，为制定党和国家大政方针提供了理论依据，进一步指明了党和国家事业的前进方向，具有重大现实意义和深远历史意义。</strong>
+             </div>
+            
+             <br>
+             <hr>
+             <div style="float:right;margin-right:25px;width:80px;" >
+                 &nbsp;&nbsp;&nbsp;<strong style="color:red;font-size:22px;">免费</strong>
+                 <br>
+                 <label style="font-size:10px;">761人已完成</label>
+             </div>
+        </div>
+        <div id="institution5" style="">
+             <div style="height:20px;width:100px;margin-left:25px;background-color:red;color:white;border-radius:4px;text-align:center;font-size:10px">
+                 <label id="p2" style="line-height:20px;">手机端试卷</label>
+             </div>
+             <div style="margin-left:25px;margin-top:25px;margin-right:25px;font-family">
+                 <strong>事业单位是指由国家行政机关举办，受国家行政机关领导，没有生产收入、所需经费由公共财政支出、不实行经济核算、主要提供教育、科技、文化、卫生等活动非物质生产和劳务服务的社会公共组织，事业单位接受政府领导，是表现形式为组织或机构的法人实体。</strong>
+             </div>
+            
+             <br>
+             <hr>
+             <div style="float:right;margin-right:25px;width:80px;" >
+                 &nbsp;&nbsp;&nbsp;<strong style="color:red;font-size:22px;">免费</strong>
+                 <br>
+                 <label style="font-size:10px;">881人已完成</label>
+             </div>
+        </div> 
+        <div id="institution6" style="">
+             <div style="height:20px;width:100px;margin-left:25px;background-color:red;color:white;border-radius:4px;text-align:center;font-size:10px">
+                 <label id="p2" style="line-height:20px;">其他</label>
+             </div>
+             <div style="margin-left:25px;margin-top:25px;margin-right:25px;font-family">
+                 <strong></strong>
+             </div>
+            
+             <br>
+             <hr>
+             <div style="float:right;margin-right:25px;width:80px;" >
+                 &nbsp;&nbsp;&nbsp;<strong style="color:red;font-size:22px;">免费</strong>
+                 <br>
+                 <label style="font-size:10px;">761人已完成</label>
+             </div>
+        </div>
+    </div>
+    
+    <div style="width:1000px;margin:auto;display:none;" id="servant">
+        <div id="servant1" style="">
+             <div style="height:20px;width:100px;margin-left:25px;background-color:red;color:white;border-radius:4px;text-align:center;font-size:10px">
+                 <label id="p2" style="line-height:20px;">综合试卷</label>
+             </div>
+             <div style="margin-left:25px;margin-top:25px;margin-right:25px;font-family">
+                 <strong>主要测查与公务员职业密切相关的、适合通过客观化纸笔测验方式进行考查的基本素质和能力要素。</strong>
+             </div>
+             <br><br><br>
+             <br>
+             <hr>
+             <div style="float:right;margin-right:25px;width:80px;" >
+                 &nbsp;&nbsp;&nbsp;<strong style="color:red;font-size:22px;">免费</strong>
+                 <br>
+                 <label style="font-size:10px;">761人已完成</label>
+             </div>
+        </div> 
+        <div id="servant2" style="">
+             <div style="height:20px;width:100px;margin-left:25px;background-color:red;color:white;border-radius:4px;text-align:center;font-size:10px">
+                 <label id="p2" style="line-height:20px;">单选题</label>
+             </div>
+             <div style="margin-left:25px;margin-top:25px;margin-right:25px;font-family">
+                 <strong>主要测查报考者运用语言文字进行思考和交流、迅速准确地理解和把握文字材料内涵的能力。</strong>
+             </div>
+             <br><br><br>
+             <br>
+             <hr>
+             <div style="float:right;margin-right:25px;width:80px;" >
+                 &nbsp;&nbsp;&nbsp;<strong style="color:red;font-size:22px;">免费</strong>
+                 <br>
+                 <label style="font-size:10px;">761人已完成</label>
+             </div>
+        </div>
+        <div id="servant3" style="">
+             <div style="height:20px;width:150px;margin-left:25px;background-color:red;color:white;border-radius:4px;text-align:center;font-size:10px">
+                 <label id="p2" style="line-height:20px;">多选题</label>
+             </div>
+             <div style="margin-left:25px;margin-top:25px;margin-right:25px;font-family">
+                 <strong>主要测查报考者理解、把握事物间量化关系和解决数量关系问题的能力，主要涉及数据关系的分析、推理、判断、运算等。</strong>
+             </div>
+             <br><br>
+             <br>
+             <hr>
+             <div style="float:right;margin-right:25px;width:80px;" >
+                 &nbsp;&nbsp;&nbsp;<strong style="color:red;font-size:22px;">免费</strong>
+                 <br>
+                 <label style="font-size:10px;">761人已完成</label>
+             </div>
+        </div> 
+        <div id="servant4" style="">
+             <div style="height:20px;width:100px;margin-left:25px;background-color:red;color:white;border-radius:4px;text-align:center;font-size:10px">
+                 <label id="p2" style="line-height:20px;">填空题</label>
+             </div>
+             <div style="margin-left:25px;margin-top:25px;margin-right:25px;font-family">
+                 <strong>主要测查报考者应知应会的基本知识以及运用这些知识分析判断的基本能力，重点测查对国情社情的了解程度、综合管理基本素质等。</strong>
+             </div>
+             <br><br>
+             <br>
+             <hr>
+             <div style="float:right;margin-right:25px;width:80px;" >
+                 &nbsp;&nbsp;&nbsp;<strong style="color:red;font-size:22px;">免费</strong>
+                 <br>
+                 <label style="font-size:10px;">761人已完成</label>
+             </div>
+        </div>
+        <div id="servant5" style="">
+             <div style="height:20px;width:150px;margin-left:25px;background-color:red;color:white;border-radius:4px;text-align:center;font-size:10px">
+                 <label id="p2" style="line-height:20px;">手机端试卷</label>
+             </div>
+             <div style="margin-left:25px;margin-top:25px;margin-right:25px;font-family">
+                 <strong>主要测查报考者理解、把握事物间量化关系和解决数量关系问题的能力，主要涉及数据关系的分析、推理、判断、运算等。</strong>
+             </div>
+             <br><br>
+             <br>
+             <hr>
+             <div style="float:right;margin-right:25px;width:80px;" >
+                 &nbsp;&nbsp;&nbsp;<strong style="color:red;font-size:22px;">免费</strong>
+                 <br>
+                 <label style="font-size:10px;">761人已完成</label>
+             </div>
+        </div> 
+        <div id="servant6" style="">
+             <div style="height:20px;width:100px;margin-left:25px;background-color:red;color:white;border-radius:4px;text-align:center;font-size:10px">
+                 <label id="p2" style="line-height:20px;">其他</label>
+             </div>
+             <div style="margin-left:25px;margin-top:25px;margin-right:25px;font-family">
+                 <strong>主要测查报考者应知应会的基本知识以及运用这些知识分析判断的基本能力，重点测查对国情社情的了解程度、综合管理基本素质等。</strong>
+             </div>
+             <br><br>
+             <br>
+             <hr>
+             <div style="float:right;margin-right:25px;width:80px;" >
+                 &nbsp;&nbsp;&nbsp;<strong style="color:red;font-size:22px;">免费</strong>
+                 <br>
+                 <label style="font-size:10px;">761人已完成</label>
+             </div>
+        </div>
+    </div>
+    
+    <div style="width:1000px;margin:auto;display:none;" id="teacher">
+        <div id="teacher1" style="">
+             <div style="height:20px;width:100px;margin-left:25px;background-color:red;color:white;border-radius:4px;text-align:center;font-size:10px">
+                 <label id="p2" style="line-height:20px;">综合试卷</label>
+             </div>
+             <div style="margin-left:25px;margin-top:25px;margin-right:25px;font-family">
+                 <strong>由教育部考试中心出题，地方教育考试院主考，主要针对师范专业和非师范专业需要考取教师资格证的考生。</strong>
+             </div>
+             <br><br>
+             <br>
+             <hr>
+             <div style="float:right;margin-right:25px;width:80px;" >
+                 &nbsp;&nbsp;&nbsp;<strong style="color:red;font-size:22px;">免费</strong>
+                 <br>
+                 <label style="font-size:10px;">761人已完成</label>
+             </div>
+        </div> 
+        <div id="teacher2" style="">
+             <div style="height:20px;width:100px;margin-left:25px;background-color:red;color:white;border-radius:4px;text-align:center;font-size:10px">
+                 <label id="p2" style="line-height:20px;">单选题</label>
+             </div>
+             <div style="margin-left:25px;margin-top:25px;margin-right:25px;font-family">
+                 <strong>由教育部考试中心出题，地方教育考试院主考，主要针对师范专业和非师范专业需要考取教师资格证的考生。</strong>
+             </div>
+             <br><br>
+             <br>
+             <hr>
+             <div style="float:right;margin-right:25px;width:80px;" >
+                 &nbsp;&nbsp;&nbsp;<strong style="color:red;font-size:22px;">免费</strong>
+                 <br>
+                 <label style="font-size:10px;">761人已完成</label>
+             </div>
+        </div>
+        <div id="teacher3" style="">
+             <div style="height:20px;width:100px;margin-left:25px;background-color:red;color:white;border-radius:4px;text-align:center;font-size:10px">
+                 <label id="p2" style="line-height:20px;">多选题</label>
+             </div>
+             <div style="margin-left:25px;margin-top:25px;margin-right:25px;font-family">
+                 <strong>由教育部考试中心出题，地方教育考试院主考，主要针对师范专业和非师范专业需要考取教师资格证的考生。</strong>
+             </div>
+             <br><br>
+             <br>
+             <hr>
+             <div style="float:right;margin-right:25px;width:80px;" >
+                 &nbsp;&nbsp;&nbsp;<strong style="color:red;font-size:22px;">免费</strong>
+                 <br>
+                 <label style="font-size:10px;">761人已完成</label>
+             </div>
+        </div> 
+        <div id="teacher4" style="">
+             <div style="height:20px;width:100px;margin-left:25px;background-color:red;color:white;border-radius:4px;text-align:center;font-size:10px">
+                 <label id="p2" style="line-height:20px;">填空题</label>
+             </div>
+             <div style="margin-left:25px;margin-top:25px;margin-right:25px;font-family">
+                 <strong>由教育部考试中心出题，地方教育考试院主考，主要针对师范专业和非师范专业需要考取教师资格证的考生。</strong>
+             </div>
+             <br><br>
+             <br>
+             <hr>
+             <div style="float:right;margin-right:25px;width:80px;" >
+                 &nbsp;&nbsp;&nbsp;<strong style="color:red;font-size:22px;">免费</strong>
+                 <br>
+                 <label style="font-size:10px;">761人已完成</label>
+             </div>
+        </div>
+        <div id="teacher5" style="">
+             <div style="height:20px;width:100px;margin-left:25px;background-color:red;color:white;border-radius:4px;text-align:center;font-size:10px">
+                 <label id="p2" style="line-height:20px;">手机端试卷</label>
+             </div>
+             <div style="margin-left:25px;margin-top:25px;margin-right:25px;font-family">
+                 <strong>由教育部考试中心出题，地方教育考试院主考，主要针对师范专业和非师范专业需要考取教师资格证的考生。</strong>
+             </div>
+             <br><br>
+             <br>
+             <hr>
+             <div style="float:right;margin-right:25px;width:80px;" >
+                 &nbsp;&nbsp;&nbsp;<strong style="color:red;font-size:22px;">免费</strong>
+                 <br>
+                 <label style="font-size:10px;">761人已完成</label>
+             </div>
+        </div> 
+        <div id="teacher6" style="">
+             <div style="height:20px;width:100px;margin-left:25px;background-color:red;color:white;border-radius:4px;text-align:center;font-size:10px">
+                 <label id="p2" style="line-height:20px;">其他</label>
+             </div>
+             <div style="margin-left:25px;margin-top:25px;margin-right:25px;font-family">
+                 <strong>由教育部考试中心出题，地方教育考试院主考，主要针对师范专业和非师范专业需要考取教师资格证的考生。</strong>
+             </div>
+             <br><br>
+             <br>
+             <hr>
+             <div style="float:right;margin-right:25px;width:80px;" >
+                 &nbsp;&nbsp;&nbsp;<strong style="color:red;font-size:22px;">免费</strong>
+                 <br>
+                 <label style="font-size:10px;">761人已完成</label>
+             </div>
+        </div>
+    </div>
+    
+    <div style="width:1000px;margin:auto;display:none;" id="firemen">
+        <div id="firemen1" style="">
+             <div style="height:20px;width:100px;margin-left:25px;background-color:red;color:white;border-radius:4px;text-align:center;font-size:10px">
+                 <label id="p2" style="line-height:20px;">综合试卷</label>
+             </div>
+             <div style="margin-left:25px;margin-top:25px;margin-right:25px;font-family">
+                 <strong>消防员，为政府或民间团体所成立的救灾救人团体成员。消防员的职责主要为消灭火灾及救护服务，同时也参与其他救援工作。</strong>
+             </div>
+             <br><br>
+             <br>
+             <hr>
+             <div style="float:right;margin-right:25px;width:80px;" >
+                 &nbsp;&nbsp;&nbsp;<strong style="color:red;font-size:22px;">免费</strong>
+                 <br>
+                 <label style="font-size:10px;">761人已完成</label>
+             </div>
+        </div> 
+        <div id="firemen2" style="">
+             <div style="height:20px;width:100px;margin-left:25px;background-color:red;color:white;border-radius:4px;text-align:center;font-size:10px">
+                 <label id="p2" style="line-height:20px;">单选题</label>
+             </div>
+             <div style="margin-left:25px;margin-top:25px;margin-right:25px;font-family">
+                 <strong>消防员作为特殊的救护职业，需经过特殊的体能、技能及心理素质的训练，保证具备特殊的体能、技能及心理素质的要求。</strong>
+             </div>
+             <br><br>
+             <br>
+             <hr>
+             <div style="float:right;margin-right:25px;width:80px;" >
+                 &nbsp;&nbsp;&nbsp;<strong style="color:red;font-size:22px;">免费</strong>
+                 <br>
+                 <label style="font-size:10px;">761人已完成</label>
+             </div>
+        </div>
+        <div id="firemen3" style="">
+             <div style="height:20px;width:100px;margin-left:25px;background-color:red;color:white;border-radius:4px;text-align:center;font-size:10px">
+                 <label id="p2" style="line-height:20px;">多选题</label>
+             </div>
+             <div style="margin-left:25px;margin-top:25px;margin-right:25px;font-family">
+                 <strong>消防员职责主要有消灭火灾、抢救灾害、消防安全设施稽查与消防安全知识宣传等，同时也参与救护工作（如道路救援、救护车救援）、为民服务（如清除野生动物、消除安全隐患）、自来水公司安全水源查察、内部勤务（接线、文书）等工作。</strong>
+             </div>
+             
+             <br>
+             <hr>
+             <div style="float:right;margin-right:25px;width:80px;" >
+                 &nbsp;&nbsp;&nbsp;<strong style="color:red;font-size:22px;">免费</strong>
+                 <br>
+                 <label style="font-size:10px;">761人已完成</label>
+             </div>
+        </div> 
+        <div id="firemen4" style="">
+             <div style="height:20px;width:100px;margin-left:25px;background-color:red;color:white;border-radius:4px;text-align:center;font-size:10px">
+                 <label id="p2" style="line-height:20px;">填空题</label>
+             </div>
+             <div style="margin-left:25px;margin-top:25px;margin-right:25px;font-family">
+                 <strong>消防员不仅具有强健身体，适用各种复杂、多变和危险的环境，而且要求消防员具有过硬的业务本领，精通消防业务理论和灭火技术、战术，同时具备良好的心理素质，遇到危险时情绪稳定，不慌、不惧，保持良好的观察、记忆、判断和思维能力。</strong>
+             </div>
+             
+             <br>
+             <hr>
+             <div style="float:right;margin-right:25px;width:80px;" >
+                 &nbsp;&nbsp;&nbsp;<strong style="color:red;font-size:22px;">免费</strong>
+                 <br>
+                 <label style="font-size:10px;">761人已完成</label>
+             </div>
+        </div>
+        <div id="firemen5" style="">
+             <div style="height:20px;width:100px;margin-left:25px;background-color:red;color:white;border-radius:4px;text-align:center;font-size:10px">
+                 <label id="p2" style="line-height:20px;">手机端试卷</label>
+             </div>
+             <div style="margin-left:25px;margin-top:25px;margin-right:25px;font-family">
+                 <strong>消防员职责主要有消灭火灾、抢救灾害、消防安全设施稽查与消防安全知识宣传等，同时也参与救护工作（如道路救援、救护车救援）、为民服务（如清除野生动物、消除安全隐患）、自来水公司安全水源查察、内部勤务（接线、文书）等工作。</strong>
+             </div>
+             
+             <br>
+             <hr>
+             <div style="float:right;margin-right:25px;width:80px;" >
+                 &nbsp;&nbsp;&nbsp;<strong style="color:red;font-size:22px;">免费</strong>
+                 <br>
+                 <label style="font-size:10px;">761人已完成</label>
+             </div>
+        </div> 
+        <div id="firemen6" style="">
+             <div style="height:20px;width:100px;margin-left:25px;background-color:red;color:white;border-radius:4px;text-align:center;font-size:10px">
+                 <label id="p2" style="line-height:20px;">其他</label>
+             </div>
+             <div style="margin-left:25px;margin-top:25px;margin-right:25px;font-family">
+                 <strong></strong>
+             </div>
+             
+             <br>
+             <hr>
+             <div style="float:right;margin-right:25px;width:80px;" >
+                 &nbsp;&nbsp;&nbsp;<strong style="color:red;font-size:22px;">免费</strong>
+                 <br>
+                 <label style="font-size:10px;">761人已完成</label>
+             </div>
+        </div>
+    </div>
+    
+    <div style="width:1000px;margin:auto;display:none;" id="drive">
+        <div id="drive1" style="">
+             <div style="height:20px;width:100px;margin-left:25px;background-color:red;color:white;border-radius:4px;text-align:center;font-size:10px">
+                 <label id="p2" style="line-height:20px;">综合试卷</label>
+             </div>
+             <div style="margin-left:25px;margin-top:25px;margin-right:25px;font-family">
+                 <strong>科目一是指驾驶员理论考试，是在车管所进行的，驾照申请者必须通过的一种许可考试。</strong>
+             </div>
+             <br><br>
+             <br>
+             <hr>
+             <div style="float:right;margin-right:25px;width:80px;" >
+                 &nbsp;&nbsp;&nbsp;<strong style="color:red;font-size:22px;">免费</strong>
+                 <br>
+                 <label style="font-size:10px;">761人已完成</label>
+             </div>
+        </div> 
+        <div id="drive2" style="">
+             <div style="height:20px;width:100px;margin-left:25px;background-color:red;color:white;border-radius:4px;text-align:center;font-size:10px">
+                 <label id="p2" style="line-height:20px;">单选题</label>
+             </div>
+             <div style="margin-left:25px;margin-top:25px;margin-right:25px;font-family">
+                 <strong>考试内容包括驾车理论基础、道路安全法律法规、交通信号、通行规则等最基本的知识，再加地方性法规。驾驶员理论考试举办时间由各地车管所自行安排。</strong>
+             </div>
+             <br>
+             <br>
+             <hr>
+             <div style="float:right;margin-right:25px;width:80px;" >
+                 &nbsp;&nbsp;&nbsp;<strong style="color:red;font-size:22px;">免费</strong>
+                 <br>
+                 <label style="font-size:10px;">761人已完成</label>
+             </div>
+        </div>
+        <div id="drive3" style="">
+             <div style="height:20px;width:100px;margin-left:25px;background-color:red;color:white;border-radius:4px;text-align:center;font-size:10px">
+                 <label id="p2" style="line-height:20px;">填空题</label>
+             </div>
+             <div style="margin-left:25px;margin-top:25px;margin-right:25px;font-family">
+                 <strong>科目一考试总时间为45分钟，考试试卷由100道题目组成，题型为判断题和单项选择题，满分100分，90分合格。</strong>
+             </div>
+             <br><br>
+             <br>
+             <hr>
+             <div style="float:right;margin-right:25px;width:80px;" >
+                 &nbsp;&nbsp;&nbsp;<strong style="color:red;font-size:22px;">免费</strong>
+                 <br>
+                 <label style="font-size:10px;">761人已完成</label>
+             </div>
+        </div> 
+         <div id="drive4" style="">
+             <div style="height:20px;width:100px;margin-left:25px;background-color:red;color:white;border-radius:4px;text-align:center;font-size:10px">
+                 <label id="p2" style="line-height:20px;">手机端试卷</label>
+             </div>
+             <div style="margin-left:25px;margin-top:25px;margin-right:25px;font-family">
+                 <strong>考试内容包括驾车理论基础、道路安全法律法规、交通信号、通行规则等最基本的知识，再加地方性法规。驾驶员理论考试举办时间由各地车管所自行安排。</strong>
+             </div>
+             <br>
+             <br>
+             <hr>
+             <div style="float:right;margin-right:25px;width:80px;" >
+                 &nbsp;&nbsp;&nbsp;<strong style="color:red;font-size:22px;">免费</strong>
+                 <br>
+                 <label style="font-size:10px;">761人已完成</label>
+             </div>
+        </div>
+        <div id="drive5" style="">
+             <div style="height:20px;width:100px;margin-left:25px;background-color:red;color:white;border-radius:4px;text-align:center;font-size:10px">
+                 <label id="p2" style="line-height:20px;">其他</label>
+             </div>
+             <div style="margin-left:25px;margin-top:25px;margin-right:25px;font-family">
+                 <strong></strong>
+             </div>
+             <br><br>
+             <br>
+             <hr>
+             <div style="float:right;margin-right:25px;width:80px;" >
+                 &nbsp;&nbsp;&nbsp;<strong style="color:red;font-size:22px;">免费</strong>
+                 <br>
+                 <label style="font-size:10px;">761人已完成</label>
+             </div>
+        </div> 
+    </div>
+    <div id="v4" style="width:300px;height:350px;margin-top:180px ;position:absolute;z-index:999;right:0px;">
+        <div id="v5" style="text-align:center;width:280px;height:350px;float:right;background-color:white;">
+            <br>
+            <h2 style="color:red;">特好消息</h2>
+            <br>
+            <br>
+            <label id="label3">2019年国家公务员考试出公告啦!</label>
+        </div>
+        <div id="v6" style="width:20px;height:350px;float:right;background-color:white;border-right:2px solid #F3F3F3;">
+            <strong  style="line-height:350px;">&#62;</strong>
+        </div>
+    </div>
+    
+    <script src="layui/layui.js" charset="utf-8"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+    $(window).bind('scroll',function(){
+        //算出鼠标移动到顶部的高度。
+       var scrollt = document.documentElement.scrollTop + document.body.scrollTop;
+       if(scrollt <= 60){
+           $("#head").css("cssText","background-color:white;border-bottom:2px solid #F3F3F3;color:black;width:100%;height:80px;text-align:center;font-size:18px;position:absolute;z-index:999;");
+           $("#label1").css("cssText","color:black;font-size:18px;");
+           $("#a1").css("cssText","color:red;border-bottom:1px solid red;width:60px;height:60px;display:inline-block");
+           $("#a2").css("cssText","color:black;font-size:18px;");
+           $("#a3").css("cssText","color:black;font-size:18px;");
+           $("#a4").css("cssText","color:black;font-size:18px;");
+       }else{
+           $("#head").css("cssText","background-color:white;border-bottom:2px solid #F3F3F3;color:black;width:100%;height:80px;text-align:center;font-size:18px;position:fixed;z-index:999");
+           $("#label1").css("cssText","color:black;font-size:18px;");
+           $("#a1").css("cssText","color:red;border-bottom:1px solid red;width:60px;height:60px;display:inline-block");
+           $("#a2").css("cssText","color:black;font-size:18px;");
+           $("#a3").css("cssText","color:black;font-size:18px;");
+           $("#a4").css("cssText","color:black;font-size:18px;");
+           $("#v1").css("cssText","width:300px;height:350px;margin-top:180px ;position:fixed;z-index:999;float:left;");
+           $("#v4").css("cssText","width:300px;height:350px;margin-top:180px ;position:fixed;z-index:999;right:0px;");
+       }
+      })
+      function jump1(){
+    	$("#l1").css("cssText","color:red;font-size:19px");
+    	$("#l2").css("cssText","color:black;font-size:18px");
+    	$("#l3").css("cssText","color:black;font-size:18px");
+    	$("#l4").css("cssText","color:black;font-size:18px");
+    	$("#l5").css("cssText","color:black;font-size:18px");
+    	$("#l6").css("cssText","color:black;font-size:18px");
+    	$("#19da").css("cssText","width:1000px;margin:auto");
+    	$("#institution").css("cssText","display:none");
+    	$("#servant").css("cssText","display:none");
+    	$("#teacher").css("cssText","display:none");
+    	$("#firemen").css("cssText","display:none");
+    	$("#drive").css("cssText","display:none");
+    }
+    
+    function jump2(){
+    	$("#l1").css("cssText","color:black;font-size:18px");
+    	$("#l2").css("cssText","color:red;font-size:19px");
+    	$("#l3").css("cssText","color:black;font-size:18px");
+    	$("#l4").css("cssText","color:black;font-size:18px");
+    	$("#l5").css("cssText","color:black;font-size:18px");
+    	$("#l6").css("cssText","color:black;font-size:18px");
+    	$("#19da").css("cssText","display:none");
+    	$("#institution").css("cssText","width:1000px;margin:auto");
+    	$("#servant").css("cssText","display:none");
+    	$("#teacher").css("cssText","display:none");
+    	$("#firemen").css("cssText","display:none");
+    	$("#drive").css("cssText","display:none");
+    }
+    
+    function jump3(){
+    	$("#l1").css("cssText","color:black;font-size:18px");
+    	$("#l2").css("cssText","color:black;font-size:18px");
+    	$("#l3").css("cssText","color:red;font-size:19px");
+    	$("#l4").css("cssText","color:black;font-size:18px");
+    	$("#l5").css("cssText","color:black;font-size:18px");
+    	$("#l6").css("cssText","color:black;font-size:18px");
+    	$("#19da").css("cssText","display:none");
+    	$("#institution").css("cssText","display:none");
+    	$("#servant").css("cssText","width:1000px;margin:auto");
+    	$("#teacher").css("cssText","display:none");
+    	$("#firemen").css("cssText","display:none");
+    	$("#drive").css("cssText","display:none");
+    }
+    
+    function jump4(){
+    	$("#l1").css("cssText","color:black;font-size:18px");
+    	$("#l2").css("cssText","color:black;font-size:18px");
+    	$("#l3").css("cssText","color:black;font-size:18px");
+    	$("#l4").css("cssText","color:red;font-size:19px");
+    	$("#l5").css("cssText","color:black;font-size:18px");
+    	$("#l6").css("cssText","color:black;font-size:18px");
+    	$("#19da").css("cssText","display:none");
+    	$("#institution").css("cssText","display:none");
+    	$("#servant").css("cssText","display:none");
+    	$("#teacher").css("cssText","width:1000px;margin:auto");
+    	$("#firemen").css("cssText","display:none");
+    	$("#drive").css("cssText","display:none");
+    }
+    
+    function jump5(){
+    	$("#l1").css("cssText","color:black;font-size:18px");
+    	$("#l2").css("cssText","color:black;font-size:18px");
+    	$("#l3").css("cssText","color:black;font-size:18px");
+    	$("#l4").css("cssText","color:black;font-size:18px");
+    	$("#l5").css("cssText","color:red;font-size:19px");
+    	$("#l6").css("cssText","color:black;font-size:18px");
+    	$("#19da").css("cssText","display:none");
+    	$("#institution").css("cssText","display:none");
+    	$("#servant").css("cssText","display:none");
+    	$("#teacher").css("cssText","display:none");
+    	$("#firemen").css("cssText","width:1000px;margin:auto");
+    	$("#drive").css("cssText","display:none");
+    }
+    
+    function jump6(){
+    	$("#l1").css("cssText","color:black;font-size:18px");
+    	$("#l2").css("cssText","color:black;font-size:18px");
+    	$("#l3").css("cssText","color:black;font-size:18px");
+    	$("#l4").css("cssText","color:black;font-size:18px");
+    	$("#l5").css("cssText","color:black;font-size:18px");
+    	$("#l6").css("cssText","color:red;font-size:19px");
+    	$("#19da").css("cssText","display:none");
+    	$("#institution").css("cssText","display:none");
+    	$("#servant").css("cssText","display:none");
+    	$("#teacher").css("cssText","display:none");
+    	$("#firemen").css("cssText","display:none");
+    	$("#drive").css("cssText","width:1000px;margin:auto");
+    }
+    $("#part1").on("click",function(){
+    	location.href="phonetest/testy.html?type=19da";
+    })
+    $("#part2").on("click",function(){
+    	location.href="phonetest/hellosingle.html?type=19da";
+    })
+    $("#part3").on("click",function(){
+    	location.href="phonetest/hellocheack.html?type=19da";
+    })
+    $("#part4").on("click",function(){
+    	location.href="phonetest/testy.html?type=19da";
+    })
+    $("#part5").on("click",function(){
+    	location.href="phonetest/test.html?type=19da";
+    })
+    $("#part6").on("click",function(){
+    	location.href="test.html";
+    })
+    $("#institution1").on("click",function(){
+    	location.href="test.html";
+    })
+    $("#institution2").on("click",function(){
+    	location.href="test.html";
+    })
+    $("#institution3").on("click",function(){
+    	location.href="test.html";
+    })
+    $("#institution4").on("click",function(){
+    	location.href="test.html";
+    })
+    $("#institution5").on("click",function(){
+    	location.href="test.html";
+    })
+    $("#institution6").on("click",function(){
+    	location.href="test.html";
+    })
+    $("#servant1").on("click",function(){
+    	location.href="test.html";
+    })
+    $("#servant2").on("click",function(){
+    	location.href="test.html";
+    })
+    $("#servant3").on("click",function(){
+    	location.href="test.html";
+    })
+    $("#servant4").on("click",function(){
+    	location.href="test.html";
+    })
+    $("#servant5").on("click",function(){
+    	location.href="test.html";
+    })
+    $("#servant6").on("click",function(){
+    	location.href="test.html";
+    })
+    $("#teacher1").on("click",function(){
+    	location.href="test.html";
+    })
+    $("#teacher2").on("click",function(){
+    	location.href="test.html";
+    })
+    $("#teacher3").on("click",function(){
+    	location.href="test.html";
+    })
+    $("#teacher4").on("click",function(){
+    	location.href="test.html";
+    })
+    $("#teacher5").on("click",function(){
+    	location.href="test.html";
+    })
+    $("#teacher6").on("click",function(){
+    	location.href="test.html";
+    })
+    $("#firemen1").on("click",function(){
+    	location.href="test.html";
+    })
+    $("#firemen2").on("click",function(){
+    	location.href="test.html";
+    })
+    $("#firemen3").on("click",function(){
+    	location.href="test.html";
+    })
+    $("#firemen4").on("click",function(){
+    	location.href="test.html";
+    })
+    $("#firemen5").on("click",function(){
+    	location.href="test.html";
+    })
+    $("#firemen6").on("click",function(){
+    	location.href="test.html";
+    })
+    $("#drive1").on("click",function(){
+    	location.href="test.html";
+    })
+    $("#drive2").on("click",function(){
+    	location.href="test.html";
+    })
+    $("#drive3").on("click",function(){
+    	location.href="test.html";
+    })
+    $("#drive4").on("click",function(){
+    	location.href="test.html";
+    })
+    $("#drive5").on("click",function(){
+    	location.href="test.html";
+    })
+    
+    var m=1;
+    var n=1;
+    $("#v3").on("click",function(){
+    	m=m+1;
+    	var b=m%2;
+    	if(b==0){
+    		$("#v2").css("cssText","display:none;");
+    	}else{
+    		$("#v2").css("cssText","width:250px;height:350px;float:left;background-color:white;text-align:center;border-left:2px solid #F3F3F3;");
+    	}
+    })
+    $("#v6").on("click",function(){
+    	n=n+1;
+    	var b=n%2;
+    	if(b==0){
+    		$("#v5").css("cssText","display:none;");
+    	}else{
+    		$("#v5").css("cssText","width:250px;height:350px;float:right;background-color:white;text-align:center;border-right:2px solid #F3F3F3;");
+    	}
+    })
+    
+    window.onresize = function(){
+    	var wid=document.documentElement.clientWidth;
+    	if(wid<=1610){
+    		$("#v5").css("cssText","display:none;");
+    		$("#v2").css("cssText","display:none;");
+    	}else{
+    		$("#v5").css("cssText","width:250px;height:350px;float:right;background-color:white;text-align:center;border-right:2px solid #F3F3F3;");
+    		$("#v2").css("cssText","width:250px;height:350px;float:left;background-color:white;text-align:center;border-left:2px solid #F3F3F3;");
+    	}
+    }
+    $("#v5").on("click",function(){
+    	location.href="http://www.gjgwy.net/zkzx/gjgwy/218815.html";
+    })
+    $("#v2").on("click",function(){
+    	location.href="http://www.gjgwy.net/zkzx/dfgwy/255307.html ";
+    })
+    </script>
+</body>
+</html>

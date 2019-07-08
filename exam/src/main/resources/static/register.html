@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>用户注册</title>
+<link rel="stylesheet" type="text/css" href="css/reg.css">
+<link rel="stylesheet" type="text/css" href="layui/css/layui.css">
+<script type="text/javascript" src="layui/layui.js"></script>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+</head>
+<body>
+
+	<div class="site-nav-bg"
+		style="background-color: hsla(0, 0%, 100%, .4);">
+		<div class="site-nav w1200">
+			<p class="sn-back-home">
+				<i class="layui-icon layui-icon-home"></i> <a href="#">首页</a>
+			</p>
+			<div class="sn-quick-menu">
+				<div class="login">
+					<a href="login.html">登录</a>
+				</div>
+				<div class="sp-cart">
+					<a href="register.html">注册</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="content content-nav-base  login-content">
+		<div class="login-bg">
+			<div class="login-cont w1200">
+				<div class="form-box">
+					<form class="layui-form" action="">
+						<legend>用户注册</legend>
+						<div class="layui-form-item">
+							<div class="layui-inline username">
+								<div class="layui-input-inline">
+									<input type="text" name="unum" id="unum" lay-verify="username|vernum"
+										placeholder="用户名" autocomplete="off" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-inline username">
+								<div class="layui-input-inline">
+									<input type="text" name="uname" id="uname"
+										lay-verify="required|name" placeholder="昵称" autocomplete="off"
+										class="layui-input">
+								</div>
+							</div>
+							<div class="layui-inline username">
+								<div class="layui-input-inline">
+									<input type="text" name="uphone" id="uphone"
+										lay-verify="required|phone|vernum" placeholder="手机号"
+										autocomplete="off" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-inline username">
+								<div class="layui-input-inline">
+									<input type="text" name="email" id="email" lay-verify="email|vernum"
+										placeholder="邮箱" autocomplete="off" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-inline username">
+								<div class="layui-input-inline">
+									<input id="password" type="password" name="upassword"
+										lay-verify="pass" placeholder="密码" autocomplete="off"
+										class="layui-input">
+								</div>
+							</div>
+							<div class="layui-inline password">
+								<div class="layui-input-inline">
+									<input id="password2" type="password"
+										lay-verify="pass2" placeholder="确认密码" autocomplete="off"
+										class="layui-input">
+								</div>
+							</div>
+						</div>
+						<div class="layui-form-item login-btn">
+							<div class="layui-input-block">
+								<button class="layui-btn" lay-submit="" lay-filter="regbtn"
+									onclick="return false">注册</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="footer"></div>
+	<script type="text/javascript">
+		layui.config({
+			base : '../res/static/js/util' //你存放新模块的目录，注意，不是layui的模块目录
+		}).use([ 'jquery', 'form' ], function() {
+			var $ = layui.$, form = layui.form;
+
+			//自定义验证规则
+			form.verify({
+				username : [ /^[\D][\S]{5,11}$/, '用户名必须6到12位,且不能出现空格' ],
+				name:[/^[\S]{1,12}$/,'昵称不能超过16位'],
+				vernum:function(value,item){
+					var data2;
+					$.ajax({
+						type : "get",
+						url : 'user/vernum',
+						data : {"num":value},
+						async : false,
+						success : function(data) {
+							data2=data;
+						}
+					})
+					if(data2=="fail"){
+						return "该"+item.placeholder+"被已注册";
+					}
+				},
+				pass : [ /^[\S]{6,12}$/, '密码必须6到12位，且不能出现空格' ],
+				pass2 : function(value) {
+					var pas=$("#password").val();
+					if (value != pas) {
+						return '输入的密码不一致';
+					}
+				}
+			});
+
+			//监听指定开关
+			/* form.on('switch(switchTest)', function(data){
+			  layer.msg('开关checked：'+ (this.checked ? 'true' : 'false'), {
+			    offset: '6px'
+			  });
+			  layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
+			}); */
+
+			//监听提交	
+			form.on('submit(regbtn)', function(data) {
+				/* layer.alert(JSON.stringify(data.field), {
+					title : '最终的提交信息'
+				}) */
+				console.info(data.field);
+				var formdata = data.field;
+				$.ajax({
+					type : "POST",
+					url : 'user/add',
+					data : formdata,
+					dataType : 'json',
+					success : function(data) {
+						console.info(data);
+					}
+				});
+				return false;
+			});
+			/* $("#find").click(function() {
+			    userval=$("#username").val();
+			    if(!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(userval)){
+			        return '用户名不能有特殊字符';
+			      }
+			      if(/(^\_)|(\__)|(\_+$)/.test(userval)){
+			        return '用户名首尾不能出现下划线\'_\'';
+			      }
+			      if(/^\d+\d+\d$/.test(userval)){
+			        return '用户名不能全为数字';
+			      }
+			    
+			    var obj=this;
+			    $.ajax({
+			        type:"get",
+			        url:"../json/login.json",
+			        dataType:"json",//返回的
+			        success:function(data) {
+			            if(data.result){
+			                $("#find").addClass(" layui-btn-disabled");
+			                $('#find').attr('disabled',"true");
+			                settime(obj);
+			                $("#msg").text(data.msg);
+			            }else{
+			                layer.msg(data.msg);
+			            }
+			        },
+			        error:function(msg) {
+			            console.log(msg);
+			        }
+			    }); 
+			})
+			var countdown=60; 
+			function settime(obj) { 
+			    if (countdown == 0) { 
+			        obj.removeAttribute("disabled"); 
+			        obj.classList.remove("layui-btn-disabled")
+			        obj.value="获取验证码"; 
+			        countdown = 60; 
+			        return;
+			    } else { 
+			        obj.value="重新发送(" + countdown + ")"; 
+			        countdown--; 
+			    } 
+			    setTimeout(function() { 
+			        settime(obj) }
+			        ,1000) 
+			} */
+		})
+	</script>
+
+</body>
+</html>

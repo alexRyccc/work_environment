@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>cilicili</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="layui/css/layui.css">
+		<script src="js/include.js"></script>
+		<!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+		<style>
+			body{
+		
+			}
+			.font{
+				color: black !important;
+			}
+			body .layui-nav a{
+				
+				height: 42px;
+				line-height: 42px;
+			}
+		</style> 
+ <include src="head.html"></include>
+	
+    
+
+
+
+	<body style="min-width: 1200px">
+	
+ <br>
+  <br>
+   <br>
+  <img alt="" src="img/bg3.png">
+
+   
+      <div style="width: 90% ;padding-left:150px">
+<table class="layui-hide" id="test" lay-filter="test"></table>
+</div>
+ 
+<script type="text/html" id="toolbarDemo">
+  <div class="layui-btn-container">
+    <button class="layui-btn layui-btn-sm" lay-event="getCheckData">删除信息</button>
+  </div>
+</script>
+		<!--分类超链接-->
+		
+		<div>
+		   <div class="layui-col-md4">
+      <div class="grid-demo grid-demo-bg1">
+   
+      </div>
+    </div>
+       <div class="layui-col-md4">
+      <div class="grid-demo grid-demo-bg1">
+       
+      
+      </div>
+    </div>
+       <div class="layui-col-md4">
+      <div class="grid-demo grid-demo-bg1">
+      </div>
+    </div>
+		
+		</div>
+		<script src="js/jquery-3.3.1.min.js"></script>
+		<script src="layui/layui.js" charset="utf-8 "></script>
+		<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+		<script>
+		
+		
+		var p =location.search;
+		var arr =p.split("=");
+		var uids =arr[1];
+		
+		
+layui.use('table', function(){
+  var table = layui.table;
+  
+  table.render({
+    elem: '#test'
+    ,url:'/infors/table/'+uids
+    ,toolbar: '#toolbarDemo'
+    ,cols: [[
+      {type:'radio'}
+   
+      ,{field:'aname', width:140, title: '发信人'}
+      ,{field:'ifname', width:700, title: '内容', sort: true}
+      ,{field:'uname', width:140, title: '接收人'}
+      ,{field:'ifdate', title: '时间', width: 200}
+    ]]
+    ,page: true
+  });
+  
+  //头工具栏事件
+  table.on('toolbar(test)', function(obj){
+    var checkStatus = table.checkStatus(obj.config.id); //获取选中行状态
+    switch(obj.event){
+      case 'getCheckData':
+        var data = checkStatus.data;  //获取选中行数据
+        layer.alert(JSON.stringify(data));
+      break;
+    };
+  });
+});
+</script>
+
+	</body>
+
+</html>

@@ -1,0 +1,249 @@
+	
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>学习强国考试试卷</title>
+<link href="../css/main.css" rel="stylesheet" type="text/css" />
+<link href="../css/iconfont.css" rel="stylesheet" type="text/css" />
+<link href="../css/test1.css" rel="stylesheet" type="text/css" /> 
+ <link rel="stylesheet" href="../layui/css/layui.css"  media="all">
+  <script src="../js/include.js"></script>
+
+<style>
+.hasBeenAnswer {
+	background: #5d9cec;
+	color:#fff;
+}
+
+</style>
+</head>
+<div>
+ <include src="head.html" ></include> 
+ </div>
+ <br>
+<br>
+<br>
+<br>
+<body>
+	<div class="main">
+		<!--nr start-->
+		<div class="test_main">
+			<div class="nr_left">
+				<div class="test">
+				
+					<form action="" method="post">
+						<div class="test_title">
+							<p class="test_time">
+								<i class="icon iconfont">&#xe6fb;</i><b class="alt-1">01:30:00</b>
+							</p>
+							<font><input type="button" id="btn1" name="test_jiaojuan" value="交卷"></font>
+						</div>
+						
+							<div class="test_content">
+								<div class="test_content_title">
+									<h2>单选题</h2>
+									<p>
+										<span>共</span><i class="content_lit">30</i><span>题，</span><span>合计</span><i class="content_fs">30</i><span>分</span>
+									</p>
+								</div>
+							</div>
+							<div class="test_content_nr" id="tx">
+							
+							
+							</div>
+						
+							<div class="test_content">
+								<div class="test_content_title">
+									<h2>多选题</h2>
+									<p>
+										<span>共</span><i class="content_lit">10</i><span>题，</span><span>合计</span><i class="content_fs">10</i><span>分</span>
+									</p>
+								</div>
+							</div>
+							<div class="test_content_nr" id="duox">
+							
+														
+							</div>
+							
+							<div class="test_content">
+								<div class="test_content_title">
+									<h2>填空题</h2>
+									<p>
+										<span>共</span><i class="content_lit">5</i><span>题，</span><span>合计</span><i class="content_fs">5</i><span>分</span>
+									</p>
+								</div>
+							</div>
+							<div class="test_content_nr" id="tkt">
+							
+														
+							</div>
+						
+					</form>
+				</div>
+			</div>
+			
+			<div class="nr_right">
+				<div class="nr_rt_main">
+					<div class="rt_nr1" style="top:150px">
+						<div class="rt_nr1_title">
+							<h1>
+								<i class="icon iconfont">&#xe692;</i>答题卡
+							</h1>
+							<p class="test_time">
+								<i class="icon iconfont">&#xe6fb;</i><b class="alt-1">01:30:00</b>
+							</p>
+						</div>
+						
+							<div class="rt_content">
+								<div class="rt_content_tt">
+									<h2>单选题</h2>
+									<p>
+										<span>共</span><i class="content_lit">15</i><span>题</span>
+									</p>
+								</div>
+								<div class="rt_content_nr answerSheet">
+									<ul>
+										
+											<li><a href="#answer1" id="1answer1">1</a></li>
+											<li><a href="#answer2" id="1answer2">2</a></li>
+											<li><a href="#answer3" id="1answer3">3</a></li>
+											<li><a href="#answer4" id="1answer4">4</a></li>
+											<li><a href="#answer5" id="1answer5">5</a></li>
+											<li><a href="#answer6" id="1answer6">6</a></li>
+											<li><a href="#answer7" id="1answer7">7</a></li>
+											<li><a href="#answer8" id="1answer8">8</a></li>
+											<li><a href="#answer9" id="1answer9">9</a></li>
+											<li><a href="#answer10" id="1answer10">10</a></li>
+												<li><a href="#answer11" id="1answer11">11</a></li>
+												<li><a href="#answer12" id="1answer12">12</a></li>
+												<li><a href="#answer13" id="1answer13">13</a></li>
+												<li><a href="#answer14" id="1answer14">14</a></li>
+												<li><a href="#answer15" id="1answer15">15</a></li>
+											
+										
+									</ul>
+								</div>
+							</div>
+						
+							<div class="rt_content">
+								<div class="rt_content_tt">
+									<h2>多选题</h2>
+									<p>
+										<span>共</span><i class="content_lit">10</i><span>题</span>
+									</p>
+								</div>
+								<div class="rt_content_nr answerSheet">
+									<ul>
+										
+											<li><a href="#answer51" id="1answer51">1</a></li>										
+											<li><a href="#answer52" id="1answer52">2</a></li>
+											<li><a href="#answer53" id="1answer53">3</a></li>	
+											<li><a href="#answer54" id="1answer54">4</a></li>	
+											<li><a href="#answer55" id="1answer55">5</a></li>	
+											<li><a href="#answer56" id="1answer56">6</a></li>	
+											<li><a href="#answer57" id="1answer57">7</a></li>	
+											<li><a href="#answer58" id="1answer58">8</a></li>	
+											<li><a href="#answer59" id="1answer59">9</a></li>	
+											<li><a href="#answer60" id="1answer60" >10</a></li>	
+										
+									</ul>
+								</div>
+							</div>
+							<div class="rt_content">
+								<div class="rt_content_tt">
+									<h2>填空题</h2>
+									<p>
+										<span>共</span><i class="content_lit">5</i><span>题</span>
+									</p>
+								</div>
+								<div class="rt_content_nr answerSheet">
+									<ul>
+										
+											<li><a href="#answer71" id="1answer71">1</a></li>										
+											<li><a href="#answer72" id="1answer72">2</a></li>
+											<li><a href="#answer73" id="1answer73">3</a></li>
+											<li><a href="#answer74" id="1answer74">4</a></li>
+											<li><a href="#answer75" id="1answer75">5</a></li>
+										
+									</ul>
+								</div>
+							</div>
+						
+					</div>
+
+				</div>
+			</div>
+			
+		</div>
+		<!--nr end-->
+		<div class="foot"></div>
+	</div>
+
+
+	<script src="../js/jquery.easy-pie-chart.js"></script>
+	<script src="../js/jquery-3.3.1.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<!--时间js-->
+	<script src="../js/testy.js"></script>
+	<script src="../time/jquery.countdown.js"></script>
+	<script>
+	
+	var time =0;
+	count1()
+	function count1()  
+	{　
+		time = time+ 1  
+	   
+	    meter1=setTimeout("count1()", 1000)  
+	    
+	}
+	
+		window.jQuery(function($) {
+			"use strict";
+			
+			$('time').countDown({
+				with_separators : false
+			});
+			$('.alt-1').countDown({
+				css_class : 'countdown-alt-1'
+			});
+			$('.alt-2').countDown({
+				css_class : 'countdown-alt-2'
+			});
+			
+		});
+		
+		
+		$(function() {
+		
+			upperCase =function (x){
+			
+				$("#1"+x).css("background-color","#33CCFF");
+			}
+			
+			$('li.option input').click(function() {
+			
+		
+				var examId = $(this).closest('.test_content_nr_main').closest('li').attr('id'); // 得到题目ID
+			
+				var cardLi = $("#"+examId+""); // 根据题目ID找到对应答题卡
+				
+				// 设置已答题
+				
+					
+					$("#1"+examId).css("background-color","#33CCFF");
+					
+				
+				
+			});
+		});
+	</script>
+	
+
+
+</body>
+
+</html>

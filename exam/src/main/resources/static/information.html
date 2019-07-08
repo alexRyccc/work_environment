@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="layui/css/layui.css"  media="all">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<script src="js/include.js"></script>
+<title>资讯</title>
+<style>
+   #td:hover{
+       color:red;
+   }
+</style>
+</head>
+<body style="position:relative; 5 ">
+ <include src="head3.html"></include>
+    <!-- <div style="background-color:#F3F3F3;color:black;width:100%;height:80px;text-align:center;font-size:18px;position:absolute;z-index:999;" id="head">
+      <p style="line-height:80px;">
+        <label>学习强国</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a style="color:black;font-size:18px;" id="label1" href="main.html">首页</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a id="a1" href="questionbank.html" style="color:black;font-size:18px;">题库</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a id="a2" href="information.html" style="border-bottom:1px solid red;width:60px;height:60px;display:inline-block;color:red;">资讯</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="text" name="search" id="search" placeholder="请输入关键字" class="form-control" style="width:200px;display:inline;">&nbsp;&nbsp;
+        <button type="button" id="btn" name="btn" class="btn btn-primary" >搜索</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="register.html" id="a3" style="color:black;font-size:18px;">注册</a>&nbsp;&nbsp;|
+        <a href="login.html" id="a4" style="color:black;font-size:18px;">登录</a>
+      </p>
+    </div> -->
+    <div style="width:1000px;margin:auto;">
+        <br>
+        <br>
+        <br><br><br>
+        <h3><label style="color:red;">|</label>&nbsp;找资讯</h3>
+        <hr>
+        <br>
+        <div style="width:140px;height:60px;float:left;"><strong>考试类型</strong>&nbsp;
+            <i class="layui-icon layui-icon-next" ></i> 
+        </div>
+        <div style="width:860px;height:60px;float:left;" id="part1">
+            &nbsp;<label onclick="select1(this)" style="color:red;">不限</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select1(this)">事业单位</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select1(this)">公务员考试</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select1(this)">教师考试</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select1(this)">消防员考试</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select1(this)">驾驶证</label>
+        </div>
+        <br>
+        <div style="width:140px;height:160px;float:left;"><strong>考试地区</strong>&nbsp;
+            <i class="layui-icon layui-icon-next" ></i> 
+        </div>
+        <div style="width:860px;height:160px;float:left;" id="part2">
+            &nbsp;<label onclick="select2(this)" style="color:red;">不限</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select2(this)">安徽</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select2(this)">北京</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select2(this)">重庆</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select2(this)">福建</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select2(this)">甘肃</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select2(this)">广东</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select2(this)">广西</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select2(this)">贵州</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select2(this)">海南</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select2(this)">河北</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select2(this)">河南</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select2(this)">湖北</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select2(this)">湖南</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select2(this)">黑龙江</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select2(this)">吉林</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select2(this)">江苏</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select2(this)">江西</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select2(this)">辽宁</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select2(this)">宁夏</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select2(this)">内蒙古</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select2(this)">青海</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select2(this)">上海</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select2(this)">山东</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select2(this)">山西</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select2(this)">陕西</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select2(this)">四川</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select2(this)">天津</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select2(this)">西藏</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select2(this)">新疆</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select2(this)">云南</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select2(this)">浙江</label>
+        </div>
+        <br><br><br><br>
+        <div style="width:140px;height:100px;float:left;"><strong>公告类型</strong>&nbsp;
+            <i class="layui-icon layui-icon-next" ></i> 
+        </div>
+        <div style="width:860px;height:100px;float:left;" id="part3">
+            &nbsp;<label onclick="select3(this)" style="color:red;">不限</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select3(this)">招考公告</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select3(this)">职位信息</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select3(this)">报名入口</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select3(this)">成绩查询</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select3(this)">考试大纲</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select3(this)">试题资料</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label onclick="select3(this)">准考证打印</label>
+        </div>
+    </div>
+    <br>
+    <div style="width:1000px;margin:auto;"  >
+    
+    <table id=""></table>
+    </div>
+    <script src="layui/layui.js" charset="utf-8"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+       $(window).bind('scroll',function(){
+        //算出鼠标移动到顶部的高度。
+       var scrollt = document.documentElement.scrollTop + document.body.scrollTop;
+       if(scrollt <= 60){
+           $("#head").css("cssText","background-color:#F3F3F3;color:black;width:100%;height:80px;text-align:center;font-size:18px;position:absolute;z-index:999;");
+           $("#label1").css("cssText","color:black;font-size:18px;");
+           $("#a1").css("cssText","color:black;font-size:18px;");
+           $("#a2").css("cssText","color:red;border-bottom:1px solid red;width:60px;height:60px;display:inline-block");
+           $("#a3").css("cssText","color:black;font-size:18px;");
+           $("#a4").css("cssText","color:black;font-size:18px;");
+       }else{
+           $("#head").css("cssText","background-color:#F3F3F3;color:black;width:100%;height:80px;text-align:center;font-size:18px;position:fixed;z-index:999");
+           $("#label1").css("cssText","color:black;font-size:18px;");
+           $("#a1").css("cssText","color:black;font-size:18px;");
+           $("#a2").css("cssText","color:red;border-bottom:1px solid red;width:60px;height:60px;display:inline-block");
+           $("#a3").css("cssText","color:black;font-size:18px;");
+           $("#a4").css("cssText","color:black;font-size:18px;");
+       }
+      })
+    
+      function loadData(){
+    	   $.ajax({
+    		   type:'get',
+    		   url:'/news',
+    		   data:null,
+    		   dataType:'json',
+    		   success:function(data){
+    			   var tr='';
+    			   $.each(data,function(index,val){
+    				   tr+='<tr>';
+    				   tr+='<td style="width:800px;height:50px;" id="td" onclick="jump('+val.nid+')">'+val.nname+'</td>';
+    				   tr+='<td style="width:100px;">'+val.location+'</td>';
+    				   tr+='<td style="width:100px;">'+val.ndate+'</td>';
+    				   tr+='</tr>';
+    			   });
+    			   $('table').html(tr);
+    		   }   
+    	   })
+       }
+       $(function(){
+       	loadData();
+       })
+       
+      var a='不限';
+      var b='不限';
+      var c='不限';
+      function select1(testType){
+    	   a=testType.innerText;
+    	   $(testType).siblings().attr("style","color:black;");
+    	   testType.style.color="red";
+    	   $.ajax({
+    		   type:'get',
+    		   url:'/news/select',
+    		   data:{'testtype':a,'location':b,'ntype':c},
+    		   dataType:'json',
+    		   success:function(data){
+    			   var tr='';
+    			   $.each(data,function(index,val){
+    				   tr+='<tr>';
+    				   tr+='<td style="width:800px;height:50px;" id="td" onclick="jump('+val.nid+')">'+val.nname+'</td>';
+    				   tr+='<td style="width:100px;">'+val.location+'</td>';
+    				   tr+='<td style="width:100px;">'+val.ndate+'</td>';
+    				   tr+='</tr>';
+    			   });
+    			   $('table').html(tr);
+    		   }   
+    	   })
+       }
+      
+      function select2(testType){
+   	      b=testType.innerText;
+   	      $(testType).siblings().attr("style","color:black;");
+   	      testType.style.color="red";
+   	   $.ajax({
+		   type:'get',
+		   url:'/news/select',
+		   data:{'testtype':a,'location':b,'ntype':c},
+		   dataType:'json',
+		   success:function(data){
+			   var tr='';
+			   $.each(data,function(index,val){
+				   tr+='<tr>';
+				   tr+='<td style="width:800px;height:50px;" id="td" onclick="jump('+val.nid+')">'+val.nname+'</td>';
+				   tr+='<td style="width:100px;">'+val.location+'</td>';
+				   tr+='<td style="width:100px;">'+val.ndate+'</td>';
+				   tr+='</tr>';
+			   });
+			   $('table').html(tr);
+		   }   
+	   })
+      }
+      
+      function select3(testType){
+   	      c=testType.innerText;
+   	      $(testType).siblings().attr("style","color:black;");
+   	      testType.style.color="red";
+   	   $.ajax({
+		   type:'get',
+		   url:'/news/select',
+		   data:{'testtype':a,'location':b,'ntype':c},
+		   dataType:'json',
+		   success:function(data){
+			   var tr='';
+			   $.each(data,function(index,val){
+				   tr+='<tr>';
+				   tr+='<td style="width:800px;height:50px;" id="td" onclick="jump('+val.nid+')">'+val.nname+'</td>';
+				   tr+='<td style="width:100px;">'+val.location+'</td>';
+				   tr+='<td style="width:100px;">'+val.ndate+'</td>';
+				   tr+='</tr>';
+			   });
+			   $('table').html(tr);
+		   }   
+	   })
+      }
+      
+      jump=  function (a){
+    	  $.ajax({
+   		   type:'get',
+   		   url:'/news/jump',
+   		   data:{'nid':a},
+   		   dataType:'json',
+   		   success:function(data){
+   			  var ss=data.url;
+   			window.location.href=ss;
+   		   }   
+   	   })
+      }
+   </script>
+</body>
+</html>
